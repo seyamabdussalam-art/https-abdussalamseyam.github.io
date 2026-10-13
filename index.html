@@ -11,7 +11,7 @@ body{background:#F5F5F5;color:#111;font-family:'Inter',sans-serif}
 h1,h2{font-family:'Syne',sans-serif}
 .topbar{background:#111;color:#fff;text-align:center;padding:8px;font-size:12px;letter-spacing:1px}
 nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;padding:12px 16px}
-.logo{font-family:'Syne';font-weight:800;font-size:22px;letter-spacing:-1px}
+.logo{font-family:'Syne';font-weight:800;font-size:22px;letter-spacing:-1px;cursor:pointer}
 .logo span{color:#888}
 .search{flex:1;max-width:420px;margin:0 16px;background:#f1f1f1;border-radius:999px;display:flex;align-items:center;padding:8px 14px}
 .search input{border:0;background:transparent;outline:none;width:100%;font-size:14px}
@@ -41,9 +41,10 @@ nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #ee
 .add{width:100%;background:#111;color:#fff;border:0;padding:10px;border-radius:12px;font-weight:700;cursor:pointer}
 #admin,#cart{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:100}
 #admin.open,#cart.open{display:block}
-.box{max-width:520px;margin:40px auto;background:#fff;border-radius:20px;padding:20px}
+.box{max-width:560px;margin:30px auto;background:#fff;border-radius:20px;padding:20px;max-height:90vh;overflow:auto}
 .input{width:100%;background:#f5f5f5;border:1px solid #e5e5e5;padding:12px 14px;border-radius:12px;margin-top:10px;outline:none}
 .cartBox{position:absolute;right:0;top:0;bottom:0;width:390px;max-width:92vw;background:#fff;padding:20px;display:flex;flex-direction:column}
+.edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 @media(max-width:1000px){.store{grid-template-columns:repeat(3,1fr)}.hero{grid-template-columns:1fr}}
 @media(max-width:600px){.store{grid-template-columns:repeat(2,1fr)}.search{display:none}}
 </style>
@@ -51,26 +52,26 @@ nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #ee
 <body>
 <div class="topbar">FREE DELIVERY IN SYLHET • CUSTOM DESIGN AVAILABLE • WHATSAPP: 01993239956</div>
 <nav>
-<div class="logo">SEYAM.ART <span>STORE</span></div>
+<div class="logo" id="mainLogo">SEYAM.ART <span>STORE</span></div>
 <div class="search"><span>🔍</span><input id="searchInput" oninput="searchProd()" placeholder="Search posters, logos..."></div>
-<div style="display:flex;gap:8px"><button class="btn btn-light" onclick="openA()">+ Post</button><button class="btn btn-dark" onclick="openC()">Cart (<span id="cnt">0</span>)</button></div>
+<div style="display:flex;gap:8px"><button class="btn btn-light" onclick="openA()">+ Post / Edit</button><button class="btn btn-dark" onclick="openC()">Cart (<span id="cnt">0</span>)</button></div>
 </nav>
 
 <div class="hero">
 <div class="hero-main">
-<p style="background:rgba(255,255,255,.1);display:inline-block;padding:6px 12px;border-radius:999px;font-size:11px;letter-spacing:1px">● TRUSTED BY 100+ CLIENTS</p>
+<p style="background:rgba(255,255,255,.1);display:inline-block;padding:6px 12px;border-radius:999px;font-size:11px;letter-spacing:1px">● TRUSTED BY 100+ CLIENTS • EDIT FROM WEBSITE NOW!</p>
 <h1>PROFESSIONAL<br>DESIGNS<br><span style="color:#555">THAT SELL.</span></h1>
-<p>Premium posters, brand kits & social packs. Instant delivery. Customize option available.</p>
+<p>Premium posters, brand kits & social packs. Instant delivery. Ekhon website thekei Price & Pic change korte parba!</p>
 <a href="#store" style="display:inline-block;margin-top:18px;background:#fff;color:#000;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:700">Shop Now ↓</a>
 </div>
 <div class="hero-side">
 <h2 style="font-size:18px">Owner Panel</h2>
-<p style="color:#777;font-size:13px;margin-top:6px;line-height:1.5">Tumi chaile ekhuni product post korte parba. Customer order korle direct WhatsApp e asbe.</p>
+<p style="color:#777;font-size:13px;margin-top:6px;line-height:1.5">Ekhon product er price ar picture website theke change korte parba. Logo te 5 bar click korleo admin khulbe.</p>
 <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center">
 <div style="background:#f6f6f6;padding:12px;border-radius:14px"><b>100+</b><p style="font-size:11px;color:#777">Orders</p></div>
 <div style="background:#f6f6f6;padding:12px;border-radius:14px"><b>4.9★</b><p style="font-size:11px;color:#777">Rating</p></div>
 </div>
-<button onclick="openA()" style="width:100%;margin-top:12px" class="btn btn-dark">+ Post New Design</button>
+<button onclick="openA()" style="width:100%;margin-top:12px" class="btn btn-dark">⚙️ Edit Price / Pic</button>
 <a href="https://wa.me/8801993239956" style="display:block;text-align:center;margin-top:8px;color:#111;font-weight:700;text-decoration:none">WhatsApp: 01993239956</a>
 </div>
 </div>
@@ -85,31 +86,36 @@ nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #ee
 
 <div class="store" id="store"></div>
 
-<!-- ADMIN -->
 <div id="admin" onclick="if(event.target.id==='admin')closeA()"><div class="box">
-<div style="display:flex;justify-content:space-between;align-items:center"><h2>Post New Product</h2><button class="btn btn-light" onclick="closeA()">X</button></div>
-<p style="color:#888;font-size:12px;margin-top:4px">Image er jonno direct link (imgur/drive) ba Emoji use koro</p>
+<div style="display:flex;justify-content:space-between;align-items:center"><h2 id="adminTitle">Post / Edit Products</h2><button class="btn btn-light" onclick="closeA()">X</button></div>
+<p style="color:#888;font-size:12px;margin-top:4px">Ekhane notun add korte parba, ar nicher list theke price & picture edit korte parba.</p>
+
+<div id="formArea" style="background:#f9f9f9;padding:12px;border-radius:12px;margin-top:12px;border:1px dashed #ddd">
 <input id="n" class="input" placeholder="Product Name">
+<div class="edit-grid">
 <input id="pr" class="input" type="number" placeholder="Price (৳)">
-<input id="op" class="input" type="number" placeholder="Old Price (optional) ex: 600">
+<input id="op" class="input" type="number" placeholder="Old Price (optional)">
+</div>
 <select id="c" class="input"><option value="poster">Poster</option><option value="logo">Logo</option><option value="social">Social</option><option value="custom">Custom</option></select>
 <input id="img" class="input" placeholder="Image Link or Emoji ex: https://...jpg or 🔥">
 <input id="badge" class="input" placeholder="Badge ex: BEST SELLER / NEW / -20%">
-<button onclick="save()" style="width:100%;margin-top:14px" class="btn btn-dark">Publish to Store ✓</button>
-<div id="list" style="margin-top:16px"></div>
+<button onclick="save()" id="saveBtn" style="width:100%;margin-top:14px" class="btn btn-dark">Publish to Store ✓</button>
+<button onclick="cancelEdit()" id="cancelBtn" style="width:100%;margin-top:8px;display:none" class="btn btn-light">Cancel Edit</button>
+</div>
+
+<div id="list" style="margin-top:18px"></div>
 </div></div>
 
-<!-- CART -->
 <div id="cart" onclick="if(event.target.id==='cart')closeC()"><div class="cartBox">
 <div style="display:flex;justify-content:space-between"><h2>Your Cart</h2><button class="btn btn-light" onclick="closeC()">Close</button></div>
 <div id="cartItems" style="margin-top:16px;flex:1;overflow:auto"></div>
-<div style="border-top:1px solid #eee;padding-top:14px"><div style="display:flex;justify-content:space-between"><span>Subtotal</span><b id="tot">৳0</b></div><a id="wa" target="_blank" style="display:block;margin-top:12px;background:#111;color:#fff;padding:14px;border-radius:12px;text-align:center;text-decoration:none;font-weight:800">Checkout via WhatsApp</a><p style="color:#999;font-size:11px;text-align:center;margin-top:8px">Order details WhatsApp e jabe 01993239956 e</p></div>
+<div style="border-top:1px solid #eee;padding-top:14px"><div style="display:flex;justify-content:space-between"><span>Subtotal</span><b id="tot">৳0</b></div><a id="wa" target="_blank" style="display:block;margin-top:12px;background:#111;color:#fff;padding:14px;border-radius:12px;text-align:center;text-decoration:none;font-weight:800">Checkout via WhatsApp</a></div>
 </div></div>
 
 <script>
 let def=[{id:1,name:"Minimal Arabic Calligraphy Poster Pack",cat:"poster",price:350,old:500,img:"🖤",badge:"BEST SELLER"},{id:2,name:"Luxury Brand Logo + Mockup Kit",cat:"logo",price:1200,old:1800,img:"👑",badge:"-30%"},{id:3,name:"Instagram 30 Posts Social Media Kit",cat:"social",price:900,old:1200,img:"📱",badge:"NEW"},{id:4,name:"Dark Aesthetic Poster Custom Design",cat:"poster",price:250,old:0,img:"🌙",badge:"HOT"},{id:5,name:"Business Card + Letterhead Premium",cat:"logo",price:800,old:1000,img:"💼",badge:""},{id:6,name:"Eid / Festival Poster Design",cat:"poster",price:300,old:0,img:"✨",badge:"EID"},{id:7,name:"YouTube Thumbnail Pack 10x",cat:"social",price:500,old:700,img:"🔥",badge:""},{id:8,name:"Full Brand Identity for Startup",cat:"logo",price:3500,old:5000,img:"🚀",badge:"PREMIUM"}];
 let products=JSON.parse(localStorage.getItem('seyam_pro_store_v2')||'null')||def;
-let cart=[];
+let cart=[];let editId=null;
 function isLink(s){return s&&s.startsWith('http')}
 function th(p){return isLink(p.img)?`<img src="${p.img}">`:p.img}
 function render(list){let s=document.getElementById('store');s.innerHTML='';list.forEach(p=>{s.innerHTML+=`<div class="card"><div class="thumb">${p.badge?`<span class="badge">${p.badge}</span>`:''}${th(p)}</div><div class="info"><h3>${p.name}</h3><div class="price-row"><span class="price">৳${p.price}</span>${p.old?`<span class="old">৳${p.old}</span>`:''}</div><div class="add-row"><button class="add" onclick="addC(${p.id})">Add to Cart +</button></div></div></div>`})}
@@ -122,10 +128,72 @@ function rem(i){cart.splice(i,1);upd()}
 function openC(){document.getElementById('cart').classList.add('open')}
 function closeC(){document.getElementById('cart').classList.remove('open')}
 function openA(){document.getElementById('admin').classList.add('open');renderList()}
-function closeA(){document.getElementById('admin').classList.remove('open')}
-function save(){let name=document.getElementById('n').value.trim(),price=parseInt(document.getElementById('pr').value),old=parseInt(document.getElementById('op').value)||0,cat=document.getElementById('c').value,img=document.getElementById('img').value.trim()||'✨',badge=document.getElementById('badge').value.trim();if(!name||!price){alert('Name + Price daw');return}products.unshift({id:Date.now(),name,cat,price,old,img,badge});localStorage.setItem('seyam_pro_store_v2',JSON.stringify(products));render(products);document.getElementById('n').value='';document.getElementById('pr').value='';document.getElementById('op').value='';document.getElementById('img').value='';document.getElementById('badge').value='';renderList();alert('Published to Store ✅')}
-function renderList(){let d=document.getElementById('list');d.innerHTML='<p style=color:#999;font-size:11px>YOUR POSTS</p>';products.slice(0,20).forEach(p=>{d.innerHTML+=`<div style="display:flex;justify-content:space-between;background:#f6f6f6;padding:8px;border-radius:8px;margin-top:6px;font-size:12px"><span>${p.name} - ৳${p.price}</span><button onclick="del(${p.id})" style="background:#fee;color:#e11;border:0;padding:4px 8px;border-radius:6px;cursor:pointer">Del</button></div>`})}
-function del(id){if(confirm('Delete?')){products=products.filter(p=>p.id!==id);localStorage.setItem('seyam_pro_store_v2',JSON.stringify(products));render(products);renderList()}}
+function closeA(){document.getElementById('admin').classList.remove('open');cancelEdit()}
+function save(){
+  let name=document.getElementById('n').value.trim(),
+  price=parseInt(document.getElementById('pr').value),
+  old=parseInt(document.getElementById('op').value)||0,
+  cat=document.getElementById('c').value,
+  img=document.getElementById('img').value.trim()||'✨',
+  badge=document.getElementById('badge').value.trim();
+  if(!name||!price){alert('Name + Price daw');return}
+  if(editId){
+    let p=products.find(x=>x.id===editId);
+    p.name=name; p.price=price; p.old=old; p.cat=cat; p.img=img; p.badge=badge;
+    editId=null;
+    document.getElementById('adminTitle').innerText='Post / Edit Products';
+    document.getElementById('saveBtn').innerText='Publish to Store ✓';
+    document.getElementById('cancelBtn').style.display='none';
+  } else {
+    products.unshift({id:Date.now(),name,cat,price,old,img,badge});
+  }
+  localStorage.setItem('seyam_pro_store_v2',JSON.stringify(products));
+  render(products);
+  document.getElementById('n').value='';document.getElementById('pr').value='';document.getElementById('op').value='';document.getElementById('img').value='';document.getElementById('badge').value='';
+  renderList();
+  alert('Done ✅');
+}
+function cancelEdit(){
+  editId=null;
+  document.getElementById('n').value='';document.getElementById('pr').value='';document.getElementById('op').value='';document.getElementById('img').value='';document.getElementById('badge').value='';
+  document.getElementById('adminTitle').innerText='Post / Edit Products';
+  document.getElementById('saveBtn').innerText='Publish to Store ✓';
+  document.getElementById('cancelBtn').style.display='none';
+}
+function renderList(){
+  let d=document.getElementById('list');
+  d.innerHTML='<p style="color:#111;font-weight:700;font-size:13px;margin-bottom:8px">YOUR PRODUCTS - Click Edit to change Price & Picture</p>';
+  products.forEach(p=>{
+    d.innerHTML+=`<div style="display:flex;gap:8px;align-items:center;background:#f6f6f6;padding:10px;border-radius:12px;margin-top:8px;">
+      <div style="width:44px;height:44px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0">${isLink(p.img)?`<img src="${p.img}" style="width:100%;height:100%;object-fit:cover">`:p.img}</div>
+      <div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div><div style="font-size:11px;color:#666">৳${p.price} ${p.old?' / old ৳'+p.old:''} • ${p.cat}</div><div style="font-size:10px;color:#999;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.img.substring(0,35)}</div></div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <button onclick="editProd(${p.id})" style="background:#111;color:#fff;border:0;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:700">Edit</button>
+        <button onclick="del(${p.id})" style="background:#fee;color:#e11;border:0;padding:4px 12px;border-radius:8px;cursor:pointer;font-size:11px">Del</button>
+      </div>
+    </div>`;
+  });
+}
+function editProd(id){
+  let p=products.find(x=>x.id===id);
+  editId=id;
+  document.getElementById('n').value=p.name;
+  document.getElementById('pr').value=p.price;
+  document.getElementById('op').value=p.old||'';
+  document.getElementById('c').value=p.cat;
+  document.getElementById('img').value=p.img;
+  document.getElementById('badge').value=p.badge||'';
+  document.getElementById('adminTitle').innerText='Editing: '+p.name;
+  document.getElementById('saveBtn').innerText='Update Product ✓';
+  document.getElementById('cancelBtn').style.display='block';
+  document.querySelector('.box').scrollTop=0;
+}
+function del(id){if(confirm('Delete this product?')){products=products.filter(p=>p.id!==id);localStorage.setItem('seyam_pro_store_v2',JSON.stringify(products));render(products);renderList()}}
+let clicks=0;
+document.getElementById('mainLogo').addEventListener('click',()=>{
+  clicks++; if(clicks>=5){clicks=0; openA();}
+  setTimeout(()=>clicks=0,3000);
+});
 </script>
 </body>
-                                                                    </html>
+  </html>
