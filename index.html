@@ -1,112 +1,115 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEYAM.ART - Rokomari Order + Customize</title>
+<title>SEYAM.ART - 20X GIANT STORE</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#f5f5f5;font-family:Arial,sans-serif}
-.header{background:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:10}
-.logo{font-weight:900;font-size:24px;cursor:pointer;user-select:none}
-.cart-btn{background:#111;color:#fff;padding:10px 18px;border-radius:6px;border:0;cursor:pointer;font-weight:700}
-.grid{max-width:1300px;margin:20px auto;padding:0 15px;display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.card{background:#fff;border:1px solid #e5e5e5;padding:12px;border-radius:6px}
-.card .imgbox{width:100%;height:170px;background:#f1f1f1;display:flex;align-items:center;justify-content:center;font-size:48px;overflow:hidden;border-radius:4px}
-.card .imgbox img{width:100%;height:100%;object-fit:cover}
-.card h3{font-size:13px;margin-top:8px;height:38px;overflow:hidden}
-.price{font-weight:800;margin-top:6px}
-.btn{background:#111;color:#fff;width:100%;padding:10px;border:0;border-radius:4px;margin-top:8px;cursor:pointer;font-weight:700}
-#checkout,#admin{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;display:none;overflow:auto}
-#checkout.open,#admin.open{display:block}
-.check-top{background:#fff;padding:14px 20px;display:flex;justify-content:space-between;border-bottom:1px solid #ddd}
-.check-wrap{max-width:1100px;margin:20px auto;display:grid;grid-template-columns:1.3fr .7fr;gap:20px;padding:0 15px 40px}
-.form-box,.summary,.admin-box{background:#fff;border:1px solid #ddd;padding:20px;border-radius:8px}
-.admin-box{max-width:600px;margin:40px auto}
-.input{width:100%;padding:12px;border:1px solid #ccc;border-radius:4px;margin-top:10px;outline:none}
-.method{border:1px solid #ddd;padding:12px;border-radius:4px;margin-top:10px;display:flex;gap:10px;align-items:center;cursor:pointer}
-.method.active{border-color:#111;background:#f9f9f9}
-.order-btn,.save-btn{background:#111;color:#fff;width:100%;padding:14px;border:0;border-radius:4px;margin-top:15px;font-weight:800;font-size:15px;cursor:pointer}
-.item{border-bottom:1px solid #eee;padding:10px 0;display:flex;justify-content:space-between;font-size:13px}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.check-wrap{grid-template-columns:1fr}}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f2f2f2;font-family:Arial}
+.top{background:#111;color:#ffe600;padding:14px;text-align:center;font-size:16px;font-weight:900;letter-spacing:1px}
+.header{background:#fff;padding:20px 28px;display:flex;gap:18px;align-items:center;position:sticky;top:0;z-index:99;border-bottom:2px solid #111}
+.logo{font-weight:900;font-size:42px;letter-spacing:-1px}
+.search{flex:1;display:flex;border:3px solid #111;border-radius:14px;overflow:hidden;max-width:1000px;height:60px}
+.search input{flex:1;border:0;padding:0 20px;outline:none;font-size:18px}
+.search button{background:#111;color:#fff;border:0;padding:0 32px;font-weight:900;font-size:18px;cursor:pointer}
+.cart{background:#111;color:#fff;padding:16px 28px;border-radius:12px;border:0;font-weight:900;font-size:18px;cursor:pointer}
+.hero{max-width:1500px;margin:20px auto;padding:0 20px}
+.hero-box{background:#111;color:#fff;border-radius:20px;padding:40px;display:flex;justify-content:space-between;align-items:center;min-height:380px;border:3px solid #ffe600}
+.hero-left h1{font-size:64px;line-height:64px;font-weight:900}
+.hero-left p{font-size:22px;margin-top:16px;color:#bbb}
+.hero-stats{display:flex;gap:18px;margin-top:22px}
+.stat{background:#222;border:1px solid #333;padding:14px 20px;border-radius:12px;text-align:center}
+.stat b{font-size:28px;color:#ffe600;display:block}
+.stat span{font-size:13px;color:#aaa}
+.hero-right{width:260px;height:260px;border-radius:50%;border:6px solid #ffe600;overflow:hidden;flex-shrink:0;background:#fff}
+.hero-right img{width:100%;height:100%;object-fit:cover}
+.cat{max-width:1500px;margin:20px auto;padding:0 20px;display:flex;gap:12px;overflow:auto}
+.cat span{background:#fff;border:2px solid #ddd;padding:14px 22px;border-radius:999px;font-size:16px;white-space:nowrap;cursor:pointer;font-weight:700}
+.cat span.active{background:#111;color:#fff;border-color:#111}
+.grid{max-width:1500px;margin:20px auto;padding:0 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:#fff;border:2px solid #e5e5e5;border-radius:18px;overflow:hidden;cursor:pointer;transition:.2s}
+.card:hover{transform:scale(1.02);border-color:#111;box-shadow:0 12px 30px rgba(0,0,0,.12)}
+.card .img{height:260px;background:#f6f6f6;display:flex;align-items:center;justify-content:center;font-size:78px}
+.info{padding:18px}.info h3{font-size:18px;line-height:22px;height:44px;overflow:hidden;font-weight:700}
+.pr{font-weight:900;margin-top:8px;font-size:22px}
+.tag{font-size:13px;color:#666;margin-top:4px}
+#checkout{position:fixed;inset:0;background:#f2f2f2;z-index:200;display:none;overflow:auto}
+#checkout.open{display:block}
+.check-top{background:#fff;padding:20px 28px;display:flex;justify-content:space-between;border-bottom:2px solid #111;position:sticky;top:0}
+.check-wrap{max-width:1200px;margin:20px auto;display:grid;grid-template-columns:1.6fr .8fr;gap:20px;padding:0 20px 40px}
+.box{background:#fff;border:2px solid #ddd;padding:24px;border-radius:16px}
+.input{width:100%;padding:16px;border:2px solid #ccc;border-radius:12px;margin-top:12px;font-size:16px}
+.order-btn{background:#111;color:#ffe600;width:100%;padding:18px;border:0;border-radius:12px;margin-top:16px;font-weight:900;font-size:18px;cursor:pointer}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.hero-box{flex-direction:column;text-align:center}.hero-left h1{font-size:38px;line-height:38px}.hero-right{width:180px;height:180px}}
 </style>
 </head>
 <body>
-<div class="header"><div class="logo" id="logo">SEYAM.ART</div><button class="cart-btn" onclick="openCheck()">🛒 Cart (<span id="cnt">0</span>)</button></div>
+
+<div class="top">🔥 20X GIANT STORE — 110 PRODUCTS — OWNER SEYAM — 01993239956 — BANGLADESH'S BIGGEST DESIGN STORE</div>
+
+<div class="header">
+<div class="logo">SEYAM.ART</div>
+<div class="search"><input id="q" placeholder="Search 110 giant products..."><button>Search</button></div>
+<button class="cart" onclick="openCheck()">🛒 <span id="cnt">0</span></button>
+</div>
+
+<div class="hero">
+<div class="hero-box">
+<div class="hero-left">
+<h1>20X GIANT<br>DESIGN STORE</h1>
+<p>110+ Premium Custom Designs — Professional Designer</p>
+<div class="hero-stats">
+<div class="stat"><b>110+</b><span>Designs</span></div>
+<div class="stat"><b>20X</b><span>Boro</span></div>
+<div class="stat"><b>Seyam</b><span>Owner</span></div>
+</div>
+</div>
+<div class="hero-right">
+<img src="https://i.pravatar.cc/300?img=32" id="owner" onerror="this.src='https://via.placeholder.com/300'">
+</div>
+</div>
+</div>
+
+<div class="cat" id="cats"></div>
 <div class="grid" id="store"></div>
 
-<!-- CHECKOUT = Rokomari Style -->
-<div id="checkout" onclick="if(event.target.id==='checkout')closeCheck()">
-<div class="check-top"><b>Checkout - Rokomari Style</b><button onclick="closeCheck()" style="background:#fff;border:1px solid #ddd;padding:6px 14px;border-radius:4px;cursor:pointer">Close</button></div>
+<div id="checkout">
+<div class="check-top"><b style="font-size:20px">GIANT CHECKOUT</b><button onclick="closeCheck()" style="padding:10px 18px;border:2px solid #111;border-radius:10px;cursor:pointer;font-weight:700">X Close</button></div>
 <div class="check-wrap">
-<div class="form-box">
-<h3>Shipping Address</h3>
-<input id="cname" class="input" placeholder="Full Name *">
-<input id="cphone" class="input" placeholder="Phone Number *">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><input id="ccity" class="input" placeholder="City / District *"><input id="carea" class="input" placeholder="Area / Thana *"></div>
-<textarea id="caddr" class="input" style="height:80px" placeholder="Full Address *"></textarea>
-<h3 style="margin-top:20px">Payment Method</h3>
-<div class="method active" onclick="selM(this)"><input type="radio" checked> Cash On Delivery</div>
-<div class="method" onclick="selM(this)"><input type="radio"> bKash / Nagad - 01993239956</div>
+<div class="box">
+<h2>Delivery Info</h2>
+<input id="n" class="input" placeholder="Full Name *">
+<input id="ph" class="input" placeholder="Phone *">
+<input id="ct" class="input" placeholder="City *">
+<input id="ar" class="input" placeholder="Area *">
+<textarea id="ad" class="input" placeholder="Full Address *" rows="3"></textarea>
 </div>
-<div class="summary">
-<h3>Order Summary</h3>
+<div class="box">
+<h2>Order</h2>
 <div id="items"></div>
-<div style="display:flex;justify-content:space-between;margin-top:12px"><span>Subtotal</span><b id="sub">৳0</b></div>
-<div style="display:flex;justify-content:space-between;margin-top:6px"><span>Delivery</span><b>৳60</b></div>
-<div style="display:flex;justify-content:space-between;margin-top:10px;border-top:1px solid #ddd;padding-top:10px;font-size:16px"><span>Total</span><b id="total">৳0</b></div>
-<button class="order-btn" onclick="placeOrder()">Confirm Order ✓</button>
+<div style="display:flex;justify-content:space-between;margin-top:14px;font-size:18px"><span>Subtotal</span><b id="sub">0</b></div>
+<div style="display:flex;justify-content:space-between;font-size:16px"><span>Delivery</span><b>60</b></div>
+<div style="display:flex;justify-content:space-between;margin-top:14px;border-top:2px solid #111;padding-top:14px;font-size:22px"><span>Total</span><b id="tot">0</b></div>
+<button class="order-btn" onclick="order()">CONFIRM GIANT ORDER ✓</button>
 </div>
-</div>
-</div>
-
-<!-- ADMIN = Customize Pic + Price -->
-<div id="admin" onclick="if(event.target.id==='admin')closeAdmin()">
-<div class="admin-box">
-<div style="display:flex;justify-content:space-between"><h2 id="atitle">Customize - Pic & Price Edit</h2><button onclick="closeAdmin()" style="background:#fff;border:1px solid #ddd;padding:6px 12px;border-radius:4px;cursor:pointer">X</button></div>
-<p style="font-size:12px;color:#666;margin-top:6px">Direct image link use koro: https://i.postimg.cc/...jpg (Postimages > Direct Link)</p>
-<input id="n" class="input" placeholder="Product Name *">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><input id="pr" type="number" class="input" placeholder="Price ৳ *"><input id="op" type="number" class="input" placeholder="Old Price"></div>
-<input id="img" class="input" placeholder="Image Link https://i.postimg.cc/...jpg or Emoji 🎨">
-<input id="badge" class="input" placeholder="Badge -20% / NEW">
-<button id="sbtn" onclick="saveProd()" class="save-btn">Publish ✓</button>
-<button id="cbtn" onclick="cancelE()" style="width:100%;margin-top:8px;display:none;background:#fff;color:#111;border:1px solid #ddd;padding:10px;border-radius:4px;cursor:pointer">Cancel Edit</button>
-<div id="plist" style="margin-top:20px"></div>
 </div>
 </div>
 
 <script>
-let def=[
-{id:1,name:"Arabic Calligraphy Poster Pack",price:350,old:500,img:"🖤",badge:"BEST"},
-{id:2,name:"Luxury Logo Design Kit",price:1200,old:1800,img:"👑",badge:"-30%"},
-{id:3,name:"Social Media 30 Posts Kit",price:900,old:0,img:"📱",badge:"NEW"},
-{id:4,name:"Custom Poster Design",price:250,old:0,img:"🌙",badge:"HOT"},
-{id:5,name:"Business Card Premium",price:800,old:1000,img:"💼",badge:""},
-{id:6,name:"Festival Poster Design",price:300,old:0,img:"✨",badge:""},
-{id:7,name:"YouTube Thumbnail Pack",price:500,old:700,img:"🔥",badge:""},
-{id:8,name:"Brand Identity Full Kit",price:3500,old:5000,img:"🚀",badge:"PREMIUM"}
-];
-let products=JSON.parse(localStorage.getItem('seyam_final_v2')||'null')||def;
-let cart=[];let editId=null;
-function isLink(s){return s&&s.startsWith('http')}
-function thumb(p){return isLink(p.img)?`<img src="${p.img}">`:p.img}
-function render(){let s=document.getElementById('store');s.innerHTML='';products.forEach(p=>{s.innerHTML+=`<div class="card"><div class="imgbox">${thumb(p)}</div><h3>${p.name}</h3><div class="price">৳${p.price} ${p.old?`<span style="color:#999;text-decoration:line-through;font-size:11px;margin-left:6px">৳${p.old}</span>`:''}</div><button class="btn" onclick="addC(${p.id})">Add to Cart</button></div>`})}
-render();
-function addC(id){let p=products.find(x=>x.id===id);let f=cart.find(x=>x.id===id);if(f)f.qty++;else cart.push({...p,qty:1});upd();openCheck()}
-function upd(){document.getElementById('cnt').innerText=cart.reduce((a,b)=>a+b.qty,0);let sub=cart.reduce((a,b)=>a+b.price*b.qty,0);document.getElementById('sub').innerText='৳'+sub;document.getElementById('total').innerText='৳'+(sub+60);let el=document.getElementById('items');el.innerHTML='';cart.forEach(c=>{el.innerHTML+=`<div class="item"><span>${c.name} x${c.qty}</span><span>৳${c.price*c.qty}</span></div>`})}
-function openCheck(){if(cart.length==0){alert('Cart Khali!');return}document.getElementById('checkout').classList.add('open');upd()}
+const CATS=["All","Islamic Poster","Logo","Business Card","Social","YouTube","CV","Wedding","Eid","T-Shirt","Menu","Banner","Flyer","ID Card","Certificate","Brand","Packaging","Instagram","Facebook","Poster"];
+let PRODUCTS=[];for(let i=1;i<=110;i++){let c=CATS[1+(i%19)];PRODUCTS.push({id:i,name:c+" Giant Pro Design #"+i,price:199+(i*17)%2500,cat:c,img:["🌙","👑","📱","💼","🔥","✨","🚀","🖤","📄","💌"][i%10]})}
+let cur="All",cart=[];
+function renderCats(){let el=document.getElementById('cats');el.innerHTML='';CATS.forEach(x=>{let cnt=x==='All'?110:PRODUCTS.filter(p=>p.cat===x).length;el.innerHTML+=`<span class="${cur===x?'active':''}" onclick="setCat('${x}')">${x} (${cnt})</span>`})}
+function setCat(x){cur=x;renderCats();render()}
+function render(){let q=document.getElementById('q').value.toLowerCase();let list=PRODUCTS.filter(p=>(cur==='All'||p.cat===cur)&&p.name.toLowerCase().includes(q));let s=document.getElementById('store');s.innerHTML='';list.forEach(p=>{s.innerHTML+=`<div class="card" onclick="add(${p.id})"><div class="img">${p.img}</div><div class="info"><h3>${p.name}</h3><div class="pr">৳${p.price}</div><div class="tag">${p.cat}</div></div></div>`})}
+document.getElementById('q').addEventListener('input',render);renderCats();render();
+function add(id){let p=PRODUCTS.find(x=>x.id===id);let f=cart.find(x=>x.id===id);if(f)f.qty++;else cart.push({...p,qty:1});upd();openCheck()}
+function upd(){document.getElementById('cnt').innerText=cart.reduce((a,b)=>a+b.qty,0);let sub=cart.reduce((a,b)=>a+b.price*b.qty,0);document.getElementById('sub').innerText='৳'+sub;document.getElementById('tot').innerText='৳'+(sub+60);let el=document.getElementById('items');el.innerHTML='';cart.forEach(x=>{el.innerHTML+=`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee;font-size:14px"><span>${x.name} x${x.qty}</span><span>৳${x.price*x.qty}</span></div>`})}
+function openCheck(){if(cart.length==0){alert('Product add koro age!');return}document.getElementById('checkout').classList.add('open');upd()}
 function closeCheck(){document.getElementById('checkout').classList.remove('open')}
-function selM(e){document.querySelectorAll('.method').forEach(m=>{m.classList.remove('active');m.querySelector('input').checked=false});e.classList.add('active');e.querySelector('input').checked=true}
-function placeOrder(){let n=document.getElementById('cname').value.trim(),ph=document.getElementById('cphone').value.trim(),ct=document.getElementById('ccity').value.trim(),ar=document.getElementById('carea').value.trim(),ad=document.getElementById('caddr').value.trim();if(!n||!ph||!ct||!ar||!ad){alert('Sob ghor puron koro!');return}let sub=cart.reduce((a,b)=>a+b.price*b.qty,0);let total=sub+60;let msg=`NEW ORDER - SEYAM.ART%0A%0AName: ${n}%0APhone: ${ph}%0ACity: ${ct}%0AArea: ${ar}%0AAddress: ${ad}%0A%0A`;cart.forEach(c=>{msg+=`• ${c.name} x${c.qty}=৳${c.price*c.qty}%0A`});msg+=`%0ATotal: ৳${total}`;window.open(`https://wa.me/8801993239956?text=${msg}`,'_blank');alert('Order Confirmed! ✅');cart=[];upd();closeCheck()}
-
-// ADMIN FUNCTIONS - Customize Pic & Price
-function openAdmin(){document.getElementById('admin').classList.add('open');renderList()}
-function closeAdmin(){document.getElementById('admin').classList.remove('open');cancelE()}
-function saveProd(){let name=document.getElementById('n').value.trim(),price=parseInt(document.getElementById('pr').value),old=parseInt(document.getElementById('op').value)||0,img=document.getElementById('img').value.trim()||'🎨',badge=document.getElementById('badge').value.trim();if(!name||!price){alert('Name + Price daw!');return}if(editId){let p=products.find(x=>x.id===editId);p.name=name;p.price=price;p.old=old;p.img=img;p.badge=badge;editId=null;document.getElementById('atitle').innerText='Customize - Pic & Price Edit';document.getElementById('sbtn').innerText='Publish ✓';document.getElementById('cbtn').style.display='none';}else{products.unshift({id:Date.now(),name,price,old,img,badge})}localStorage.setItem('seyam_final_v2',JSON.stringify(products));render();document.getElementById('n').value='';document.getElementById('pr').value='';document.getElementById('op').value='';document.getElementById('img').value='';document.getElementById('badge').value='';renderList();alert('Done! Picture Customize hoyeche ✅')}
-function cancelE(){editId=null;document.getElementById('n').value='';document.getElementById('pr').value='';document.getElementById('op').value='';document.getElementById('img').value='';document.getElementById('badge').value='';document.getElementById('atitle').innerText='Customize - Pic & Price Edit';document.getElementById('sbtn').innerText='Publish ✓';document.getElementById('cbtn').style.display='none'}
-function renderList(){let d=document.getElementById('plist');d.innerHTML='<b style="font-size:13px">YOUR PRODUCTS - Customize Pic</b>';products.forEach(p=>{d.innerHTML+=`<div style="display:flex;gap:8px;align-items:center;background:#f6f6f6;padding:10px;border-radius:8px;margin-top:8px"><div style="width:44px;height:44px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden">${isLink(p.img)?`<img src="${p.img}" style="width:100%;height:100%;object-fit:cover">`:p.img}</div><div style="flex:1"><div style="font-size:12px;font-weight:700">${p.name}</div><div style="font-size:11px;color:#666">৳${p.price}</div></div><div style="display:flex;flex-direction:column;gap:4px"><button onclick="editP(${p.id})" style="background:#111;color:#fff;border:0;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:11px">Edit Pic</button><button onclick="delP(${p.id})" style="background:#fee;color:#c00;border:0;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:11px">Del</button></div></div>`})}
-function editP(id){let p=products.find(x=>x.id===id);editId=id;document.getElementById('n').value=p.name;document.getElementById('pr').value=p.price;document.getElementById('op').value=p.old||'';document.getElementById('img').value=p.img;document.getElementById('badge').value=p.badge||'';document.getElementById('atitle').innerText='Editing Pic: '+p.name;document.getElementById('sbtn').innerText='Update Picture ✓';document.getElementById('cbtn').style.display='block'}
-function delP(id){if(confirm('Delete?')){products=products.filter(p=>p.id!==id);localStorage.setItem('seyam_final_v2',JSON.stringify(products));render();renderList()}}
-let clicks=0;document.getElementById('logo').addEventListener('click',()=>{clicks++;if(clicks>=5){clicks=0;openAdmin()}setTimeout(()=>clicks=0,3000)})
+function order(){let n=document.getElementById('n').value,ph=document.getElementById('ph').value;if(!n||!ph){alert('Name Phone dao');return}let sub=cart.reduce((a,b)=>a+b.price*b.qty,0);let msg=`20X GIANT ORDER%0AName:${n}%0APhone:${ph}%0ATotal:${sub+60}`;window.open(`https://wa.me/8801993239956?text=${msg}`,'_blank');cart=[];upd();closeCheck()}
 </script>
 </body>
   </html>
